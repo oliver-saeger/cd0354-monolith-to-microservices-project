@@ -10,6 +10,9 @@ executors:
 
 jobs:
   build udagram-api-feed:
+    branches:
+      only:
+        main
     executor: docker-executor
     steps:
       - checkout
@@ -27,6 +30,9 @@ jobs:
           name: "Push docker image to hub"
           command: docker push $DOCKERHUB_USER/udagram-api-feed:latest
   build udagram-api-user:
+    branches:
+      only:
+        main
     executor: docker-executor
     steps:
       - checkout
@@ -44,6 +50,9 @@ jobs:
           name: "Push docker image to hub"
           command: docker push $DOCKERHUB_USER/udagram-api-user:latest
   build udagram-frontend:
+    branches:
+      only:
+        main
     executor: docker-executor
     steps:
       - checkout
@@ -61,6 +70,9 @@ jobs:
           name: "Push docker image to hub"
           command: docker push $DOCKERHUB_USER/udagram-frontend:latest
   build udagram-reverseproxy:
+    branches:
+      only:
+        main
     executor: docker-executor
     steps:
       - checkout
