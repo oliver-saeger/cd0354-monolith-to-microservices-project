@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-reverseproxy
+  labels:
+    service: backend-reverseproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: backend-reverseproxy
+  template:
+    metadata:
+      labels:
+        service: backend-reverseproxy
+    spec:
+      containers:
+        - image: saegeroliver/udagram-reverseproxy:latest
+          name: backend-reverseproxy
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "1024Mi"
+              cpu: "500m"
+      restartPolicy: Always
